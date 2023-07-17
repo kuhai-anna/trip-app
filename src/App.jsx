@@ -1,10 +1,18 @@
-import "./App.css";
+import { Routes, Route } from 'react-router-dom';
+import './App.css';
+import Home from 'pages/Home';
+import { WeatherForecast } from 'components/WeatherForecast/WeatherForecast';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header"></header>
-    </div>
+    <Routes>
+      <Route path="/" element={<Home />}>
+        <Route
+          path="weather/:city/:startDate/:endDate"
+          element={<WeatherForecast />}
+        />
+      </Route>
+    </Routes>
   );
 }
 
