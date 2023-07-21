@@ -36,10 +36,6 @@ export const CreateTripForm = ({ onClose }) => {
     onClose();
   };
 
-  const onFormClear = formik => {
-    formik.resetForm();
-  };
-
   return (
     <>
       <h3 className={css.formTitle}>Create trip</h3>
@@ -48,125 +44,119 @@ export const CreateTripForm = ({ onClose }) => {
         onSubmit={onFormSubmit}
         validationSchema={schema}
       >
-        {formik => (
-          <Form>
-            <div className={css.formElement}>
-              <label className={css.label} htmlFor="city">
-                <span className={css.asterisk}>* </span>City
-              </label>
-              <div className={css.inputWrapper}>
-                <Field className={css.selectInput} as="select" name="city">
-                  <option className={css.inputOption} value="" disabled>
-                    Please select a city
+        <Form>
+          <div className={css.formElement}>
+            <label className={css.label} htmlFor="city">
+              <span className={css.asterisk}>* </span>City
+            </label>
+            <div className={css.inputWrapper}>
+              <Field className={css.selectInput} as="select" name="city">
+                <option className={css.inputOption} value="" disabled>
+                  Please select a city
+                </option>
+                {cities.map(city => (
+                  <option key={city.value} value={city.value}>
+                    {city.label}
                   </option>
-                  {cities.map(city => (
-                    <option key={city.value} value={city.value}>
-                      {city.label}
-                    </option>
-                  ))}
-                </Field>
-                <IconContext.Provider
-                  value={{
-                    size: '14px',
-                  }}
-                >
-                  <AiOutlineDown className={css.inputIcon} />
-                </IconContext.Provider>
-              </div>
-
-              <ErrorMessage
-                className={css.errorMessage}
-                name="city"
-                component="div"
-              />
+                ))}
+              </Field>
+              <IconContext.Provider
+                value={{
+                  size: '14px',
+                }}
+              >
+                <AiOutlineDown className={css.inputIcon} />
+              </IconContext.Provider>
             </div>
 
-            <div className={css.formElement}>
-              <label className={css.label} htmlFor="startDate">
-                <span className={css.asterisk}>* </span>Start date
-              </label>
-              <div className={css.inputWrapper}>
-                <Field className={css.input} id="startDate" name="startDate">
-                  {({ field, form }) => (
-                    <Flatpickr
-                      className={css.input}
-                      name="startDate"
-                      options={options}
-                      value={field.value}
-                      onChange={date => {
-                        form.setFieldValue('startDate', date[0]?.getTime());
-                      }}
-                      placeholder="Select date"
-                    />
-                  )}
-                </Field>
-                <IconContext.Provider
-                  value={{
-                    size: '14px',
-                  }}
-                >
-                  <AiOutlineCalendar className={css.inputIcon} />
-                </IconContext.Provider>
-              </div>
-              <ErrorMessage
-                className={css.errorMessage}
-                name="startDate"
-                component="div"
-              />
-            </div>
+            <ErrorMessage
+              className={css.errorMessage}
+              name="city"
+              component="div"
+            />
+          </div>
 
-            <div className={css.formElement}>
-              <label className={css.label} htmlFor="endDate">
-                <span className={css.asterisk}>* </span>End date
-              </label>
-              <div className={css.inputWrapper}>
-                <Field className={css.input} id="endDate" name="endDate">
-                  {({ field, form }) => (
-                    <Flatpickr
-                      className={css.input}
-                      name="endDate"
-                      options={options}
-                      value={field.value}
-                      onChange={date => {
-                        form.setFieldValue('endDate', date[0]?.getTime());
-                      }}
-                      placeholder="Select date"
-                    />
-                  )}
-                </Field>
-                <IconContext.Provider
-                  value={{
-                    size: '14px',
-                  }}
-                >
-                  <AiOutlineCalendar className={css.inputIcon} />
-                </IconContext.Provider>
-              </div>
-              <ErrorMessage
-                className={css.errorMessage}
-                name="endDate"
-                component="div"
-              />
+          <div className={css.formElement}>
+            <label className={css.label} htmlFor="startDate">
+              <span className={css.asterisk}>* </span>Start date
+            </label>
+            <div className={css.inputWrapper}>
+              <Field className={css.input} id="startDate" name="startDate">
+                {({ field, form }) => (
+                  <Flatpickr
+                    className={css.input}
+                    name="startDate"
+                    options={options}
+                    value={field.value}
+                    onChange={date => {
+                      form.setFieldValue('startDate', date[0]?.getTime());
+                    }}
+                    placeholder="Select date"
+                  />
+                )}
+              </Field>
+              <IconContext.Provider
+                value={{
+                  size: '14px',
+                }}
+              >
+                <AiOutlineCalendar className={css.inputIcon} />
+              </IconContext.Provider>
             </div>
+            <ErrorMessage
+              className={css.errorMessage}
+              name="startDate"
+              component="div"
+            />
+          </div>
 
-            <ul className={css.buttonList}>
-              <li>
-                <button
-                  className={css.cancelBtn}
-                  type="button"
-                  onClick={() => onFormClear(formik)}
-                >
-                  Cancel
-                </button>
-              </li>
-              <li>
-                <button className={css.saveBtn} type="submit">
-                  Save
-                </button>
-              </li>
-            </ul>
-          </Form>
-        )}
+          <div className={css.formElement}>
+            <label className={css.label} htmlFor="endDate">
+              <span className={css.asterisk}>* </span>End date
+            </label>
+            <div className={css.inputWrapper}>
+              <Field className={css.input} id="endDate" name="endDate">
+                {({ field, form }) => (
+                  <Flatpickr
+                    className={css.input}
+                    name="endDate"
+                    options={options}
+                    value={field.value}
+                    onChange={date => {
+                      form.setFieldValue('endDate', date[0]?.getTime());
+                    }}
+                    placeholder="Select date"
+                  />
+                )}
+              </Field>
+              <IconContext.Provider
+                value={{
+                  size: '14px',
+                }}
+              >
+                <AiOutlineCalendar className={css.inputIcon} />
+              </IconContext.Provider>
+            </div>
+            <ErrorMessage
+              className={css.errorMessage}
+              name="endDate"
+              component="div"
+            />
+          </div>
+
+          <ul className={css.buttonList}>
+            <li>
+              <button className={css.cancelBtn} type="reset">
+                Cancel
+              </button>
+            </li>
+            <li>
+              <button className={css.saveBtn} type="submit">
+                Save
+              </button>
+            </li>
+          </ul>
+        </Form>
       </Formik>
     </>
   );
