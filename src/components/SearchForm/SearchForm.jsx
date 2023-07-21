@@ -1,8 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { IconContext } from 'react-icons';
-import { BsSearch } from 'react-icons/bs';
+import { GrSearch } from 'react-icons/gr';
 import { selectFilter } from 'redux/filter/selectors';
 import { changeFilter } from 'redux/filter/filterSlice';
+import css from './SearchForm.module.css';
 
 export const SearchForm = () => {
   const dispatch = useDispatch();
@@ -13,15 +14,16 @@ export const SearchForm = () => {
   };
 
   return (
-    <div>
+    <div className={css.inputWrapper}>
       <IconContext.Provider
         value={{
-          size: '14px',
+          size: '17px',
         }}
       >
-        <BsSearch />
+        <GrSearch className={css.iconSearch} />
       </IconContext.Provider>
       <input
+        className={css.searchInput}
         type="text"
         placeholder="Search your trip"
         value={filterValue}
