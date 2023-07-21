@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunktrip_app=self.webpackChunktrip_app||[]).push([[696],{5696:function(p,a,e){p.exports=e.p+"static/media/odessa.08a079ac275cea5fd09e.jpg"}}]);

@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunktrip_app=self.webpackChunktrip_app||[]).push([[601],{7601:function(p,a,c){p.exports=c.p+"static/media/warszawa.c5103c7f9f13ca9b3b45.jpg"}}]);

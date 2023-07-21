@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunktrip_app=self.webpackChunktrip_app||[]).push([[125],{7125:function(p,a,e){p.exports=e.p+"static/media/palermo.c722190a3cabe2a73170.jpg"}}]);

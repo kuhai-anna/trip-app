@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunktrip_app=self.webpackChunktrip_app||[]).push([[942],{1942:function(p,a,e){p.exports=e.p+"static/media/background.fb3bd3a0530e57c63d45.jpg"}}]);

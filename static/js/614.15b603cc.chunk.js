@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunktrip_app=self.webpackChunktrip_app||[]).push([[614],{5614:function(p,e,t){p.exports=t.p+"static/media/kyiv.538085f5f68594febefd.jpg"}}]);
