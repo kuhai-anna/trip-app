@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import { useEffect, useCallback } from 'react';
 import { createPortal } from 'react-dom';
-import css from './Modal.module.css';
 import { IconContext } from 'react-icons';
 import { IoMdClose } from 'react-icons/io';
 import { IconButton } from 'components/IconButton/IconButton';
+import css from './Modal.module.css';
 
 // Create portal
 const modalRoot = document.querySelector('#modal-root');
@@ -40,8 +40,12 @@ export const Modal = ({ children, onClose }) => {
             size: '20px',
           }}
         >
-          <IconButton aria-label="Close button" onClick={onClose}>
-            <IoMdClose />
+          <IconButton
+            className={css.closeBtn}
+            aria-label="Close button"
+            onClick={onClose}
+          >
+            <IoMdClose className={css.iconClose} />
           </IconButton>
         </IconContext.Provider>
         {children}
