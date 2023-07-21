@@ -1,19 +1,12 @@
-import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { AddButton } from 'components/AddButton/AddButton';
 import { Modal } from 'components/Modal/Modal';
 import { CreateTripForm } from 'components/CreateTripForm/CreateTripForm';
-import { selectVisibleTrips } from 'redux/trips/selectors';
-import { TripCard } from './TripCard/TripCard';
+import { TripSlider } from 'components/TripSlider/TripSlider';
+import css from './TripList.module.css';
 
 export const TripList = () => {
-  const trips = useSelector(selectVisibleTrips);
   const [showModal, setShowModal] = useState(false);
-
-  // Sort trips by start trip date
-  const sortTripsByStart = trips.sort(
-    (firstDay, nextDay) => firstDay.startDate - nextDay.startDate
-  );
 
   // Open and close modal
   const toggleModal = () => {
@@ -28,21 +21,16 @@ export const TripList = () => {
 
   return (
     <>
-      <ul>
-        {sortTripsByStart.map(({ id, city, startDate, endDate }) => (
-          <TripCard
-            key={id}
-            id={id}
-            city={city}
-            startDate={startDate}
-            endDate={endDate}
-          />
-        ))}
-      </ul>
-      <AddButton onClick={toggleModal} />
+      <div className={css.sliderWrapper}>
+        <h3 className={css.visuallyHidden}>List of trips</h3>
+        <TripSlider>
+          <AddButton onClick={toggleModal} />
+        </TripSlider>
+      </div>
+
       {showModal && (
         <Modal onClose={toggleModal}>
-          <CreateTripForm />
+          <CreateTripForm onClose={toggleModal} />
         </Modal>
       )}
     </>
