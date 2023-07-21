@@ -1,9 +1,7 @@
-// Edit time display to '00' format
-export const addLeadingZero = value => {
-  return String(value).padStart(2, '0');
-};
+import { addLeadingZero } from './addLeadingZero';
 
-export const converterDate = timestamp => {
+// Get date from timestamp in milliseconds
+export const getDate = timestamp => {
   const newDate = new Date(timestamp);
   const day = addLeadingZero(newDate.getDate());
   const month = addLeadingZero(newDate.getMonth() + 1);
