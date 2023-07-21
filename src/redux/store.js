@@ -21,8 +21,8 @@ import { tripsReducer } from './trips/tripsSlice';
 const rootPersistConfig = {
   key: 'root',
   storage,
-  whitelist: ['trips'],
 };
+// whitelist: ['trips'],
 
 const rootReducer = combineReducers({
   trips: tripsReducer,
