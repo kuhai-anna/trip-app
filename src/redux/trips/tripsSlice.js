@@ -1,14 +1,18 @@
 import { createSlice, nanoid } from '@reduxjs/toolkit';
 
-const tripsState = [];
-
 const tripsSlice = createSlice({
   name: 'trips',
-  initialState: tripsState,
+  initialState: {
+    activeTripId: null,
+    items: [],
+  },
   reducers: {
     addTrips: {
       reducer(state, action) {
-        return [...state, action.payload];
+        return {
+          ...state,
+          items: [...state.items, action.payload],
+        };
       },
       prepare(city, startDate, endDate) {
         return {
@@ -22,10 +26,16 @@ const tripsSlice = createSlice({
       },
     },
     deleteTrips(state, action) {
-      return state.filter(trip => trip.id !== action.payload);
+      return {
+        ...state,
+        items: state.items.filter(item => item.id !== action.payload),
+      };
+    },
+    setActiveTripId(state, action) {
+      state.activeTripId = action.payload;
     },
   },
 });
 
-export const { addTrips, deleteTrips } = tripsSlice.actions;
+export const { addTrips, deleteTrips, setActiveTripId } = tripsSlice.actions;
 export const tripsReducer = tripsSlice.reducer;
