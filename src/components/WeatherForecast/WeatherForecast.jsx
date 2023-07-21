@@ -1,10 +1,10 @@
+import { useLocation, useParams } from 'react-router-dom';
+import { useEffect, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Section } from 'components/Section/Section';
 import { WeatherList } from '../WeatherList/WeatherList';
 import { Sidebar } from 'components/Sidebar/Sidebar';
 import { BackLink } from 'components/BackLink/BackLink';
-import { useLocation, useParams } from 'react-router-dom';
-import { useEffect, useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import {
   selectWeatherTodayError,
   selectWeatherTodayIsLoading,
@@ -16,6 +16,9 @@ import {
   fetchWeeklyWeather,
 } from 'redux/weather/operations';
 import { Loader } from 'components/Loader/Loader';
+import { setActiveTripId } from 'redux/trips/tripsSlice';
+import { selectActiveTrip } from 'redux/trips/selectors';
+import css from './WeatherForecast.module.css';
 
 export const WeatherForecast = () => {
   const { city, startDate, endDate } = useParams();
@@ -27,6 +30,7 @@ export const WeatherForecast = () => {
   const weeklyWeatherError = useSelector(selectWeeklyWeatherError);
   const weatherTodayIsLoading = useSelector(selectWeatherTodayIsLoading);
   const weatherTodayError = useSelector(selectWeatherTodayError);
+  const { id } = useSelector(selectActiveTrip);
 
   useEffect(() => {
     // Interrupt http request
@@ -41,17 +45,28 @@ export const WeatherForecast = () => {
     };
   }, [dispatch, city, startDate, endDate]);
 
+  const onButtonCloseClick = () => {
+    dispatch(setActiveTripId(null));
+  };
+
   return (
     <>
       <Section title="Week">
         {weeklyWeatherIsLoading && !weeklyWeatherError && <Loader />}
+
         <WeatherList />
       </Section>
-      <div>
-        <BackLink to={backLinLocationRef.current} />
-        {weatherTodayIsLoading && !weatherTodayError && <Loader />}
-        <Sidebar />
-      </div>
+      {id && (
+        <div className={css.sidebarWrapper}>
+          <BackLink
+            to={backLinLocationRef.current}
+            onClick={onButtonCloseClick}
+          />
+          {weatherTodayIsLoading && !weatherTodayError && <Loader />}
+
+          <Sidebar />
+        </div>
+      )}
     </>
   );
 };
