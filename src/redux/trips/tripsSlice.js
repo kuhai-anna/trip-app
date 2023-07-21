@@ -4,7 +4,14 @@ const tripsSlice = createSlice({
   name: 'trips',
   initialState: {
     activeTripId: null,
-    items: [],
+    items: [
+      {
+        id: nanoid(),
+        city: 'Kyiv',
+        startDate: 1689973200000,
+        endDate: 1690750800000,
+      },
+    ],
   },
   reducers: {
     addTrips: {
