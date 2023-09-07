@@ -10,8 +10,6 @@ import { cities } from 'constants/cities';
 import css from './CreateTripForm.module.css';
 import 'flatpickr/dist/flatpickr.css';
 
-// <Field type="datetime-local" id="datetime" name="datetime"></Field>
-
 const initialValues = {
   city: '',
   startDate: '',
