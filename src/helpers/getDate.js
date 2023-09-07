@@ -5,7 +5,7 @@ export const getDate = timestamp => {
   const newDate = new Date(timestamp);
   const day = addLeadingZero(newDate.getDate());
   const month = addLeadingZero(newDate.getMonth() + 1);
-  const year = addLeadingZero(newDate.getFullYear());
+  const year = newDate.getFullYear();
 
   return {
     day,
