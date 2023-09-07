@@ -11,6 +11,7 @@ function App() {
           element={<WeatherForecast />}
         />
       </Route>
+      <Route path="*" element={<Home />} />
     </Routes>
   );
 }
