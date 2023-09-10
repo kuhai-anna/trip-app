@@ -23,15 +23,17 @@ const weeklyWeatherSlice = createSlice({
       .addCase(fetchWeeklyWeather.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.items = action.payload.days.map(item => {
-          return {
-            id: nanoid(),
-            date: item.datetime,
-            icon: item.icon,
-            tempmax: item.tempmax,
-            tempmin: item.tempmin,
-          };
-        });
+        state.items = action.payload.days.map(
+          ({ datetime, icon, tempmax, tempmin }) => {
+            return {
+              id: nanoid(),
+              date: datetime,
+              icon,
+              tempmax,
+              tempmin,
+            };
+          }
+        );
       })
       .addCase(fetchWeeklyWeather.rejected, hendleRejected);
   },
@@ -49,12 +51,13 @@ const weatherTodaySlice = createSlice({
       // fetch today`s weather
       .addCase(fetchWeatherToday.pending, hendlePending)
       .addCase(fetchWeatherToday.fulfilled, (state, action) => {
+        const { datetime, temp, icon } = action.payload.days[0];
         state.isLoading = false;
         state.error = null;
         state.items = {
-          date: action.payload.days[0].datetime,
-          temp: action.payload.days[0].temp,
-          icon: action.payload.days[0].icon,
+          date: datetime,
+          temp,
+          icon,
         };
       })
       .addCase(fetchWeatherToday.rejected, hendleRejected);
