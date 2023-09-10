@@ -23,7 +23,7 @@ import css from './WeatherForecast.module.css';
 export const WeatherForecast = () => {
   const { city, startDate, endDate } = useParams();
   const location = useLocation();
-  const backLinLocationRef = useRef(location.state?.from ?? '/');
+  const backLinkLocationRef = useRef(location.state?.from ?? '/');
 
   const dispatch = useDispatch();
   const weeklyWeatherIsLoading = useSelector(selectWeeklyWeatherIsLoading);
@@ -59,7 +59,7 @@ export const WeatherForecast = () => {
       {id && (
         <div className={css.sidebarWrapper}>
           <BackLink
-            to={backLinLocationRef.current}
+            to={backLinkLocationRef.current}
             onClick={onButtonCloseClick}
           />
           {weatherTodayIsLoading && !weatherTodayError && <Loader />}
