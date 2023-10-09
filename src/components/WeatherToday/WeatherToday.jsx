@@ -5,7 +5,6 @@ import { selectWeatherToday } from 'redux/weather/selectors';
 import { getDayOfWeek } from 'helpers/getDayOfWeek';
 import css from './WeatherToday.module.css';
 
-
 export const WeatherToday = () => {
   const { city } = useSelector(selectActiveTrip);
   const [weatherIcon, setWeatherIcon] = useState(null);
